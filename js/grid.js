@@ -11,6 +11,8 @@ export function addGrid(itemData, isRestore = false) {
     let existingRows = Math.floor(existingCells / cols);
     let rowResults = [];
     let displayIndex = 0;
+    let cellsToAdd = [];
+    
     itemData.forEach((element, index) => {
 
     if (index === 1) {
@@ -72,9 +74,18 @@ export function addGrid(itemData, isRestore = false) {
             displayIndex++;
     }
 
-        grid.appendChild(cell);
-
+        cellsToAdd.push(cell);
     });
+    
+    const firstNonTitleCell = grid.querySelector(".cell:not(.title)");
+    cellsToAdd.forEach(cell => {
+        if (firstNonTitleCell) {
+            grid.insertBefore(cell, firstNonTitleCell);
+        } else {
+            grid.appendChild(cell);
+        }
+    });
+
     if (!isRestore && rowResults.length > 0) {
     GameState.shareRows.push(buildShareRow(rowResults));
     if (!GameState.practiceActive) {
