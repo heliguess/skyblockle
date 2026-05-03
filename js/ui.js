@@ -6,6 +6,16 @@ const alertBox = document.getElementById("alert");
 const guessInput = document.getElementById("guessInput");
 const guessBtn = document.getElementById("guessBtn");
 const suggestionsBox = document.getElementById("suggestions");
+const wrapper = document.querySelector('.custom-select-wrapper');
+const trigger = document.querySelector('.custom-select-trigger');
+const options = document.querySelectorAll('.custom-option');
+const hiddenInput = document.getElementById('image-selector');
+const triggerImg = trigger.querySelector('.thumb');
+const triggerText = trigger.querySelector('.trigger-text');
+const pages = document.querySelectorAll(".book-page");
+const prevBtn = document.getElementById("prev-page");
+const nextBtn = document.getElementById("next-page");
+const pageCounter = document.getElementById("page-counter");
 
 /* ---------------- alertbox temp message thingy ---------------- */
 
@@ -46,9 +56,10 @@ export function setupUI() {
     guessBtn.onclick = checkAnswer;
 
     setupAutocomplete();
-    setupHypixelToggle();
+    setupToggle();
     setupModal();
     setupScramble();
+    updateBook();
 }
 
 export function enableInput() {
@@ -219,23 +230,62 @@ function setupAutocomplete() {
     });
 }
 
-/* ---------------- h+ toggle ---------------- */
+/* -------------- selector --------------- */
 
-function setupHypixelToggle() {
-    const checkbox = document.getElementById("hpluscheck");
-    GameState.hplus = checkbox.checked;
+function setupToggle(){
+    trigger.addEventListener('click', function() {
+        wrapper.classList.toggle('open');
+    });
 
-    checkbox.addEventListener("change", e => {
-        GameState.hplus = e.target.checked;
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            const selectedTxt = this.getAttribute('data-value');
 
-        document.querySelectorAll(".imgCell img").forEach(img => {
-            const id = img.dataset.id;
-            const material = img.dataset.material;
+            GameState.texture = selectedTxt;
 
-            img.src = GameState.hplus
-                ? `img/${id.toLowerCase()}.png`
-                : `img/vanilla/${material.toLowerCase()}.png`;
+            const imgSrc = this.querySelector('.thumb').src;
+            const text = this.getAttribute('data-text');
+            
+            triggerImg.src = imgSrc;
+            triggerText.textContent = text;
+
+            options.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+
+            wrapper.classList.remove('open');
+
+            document.querySelectorAll(".imgCell img").forEach(img => {
+                const id = img.dataset.id;
+                const material = img.dataset.material;
+
+                if(GameState.texture == 'hplus') {
+                    img.src = `img/hplus/${id.toLowerCase()}.png`
+
+                    img.onerror = function() {
+                        console.log(`img/hplus/${id.toLowerCase()}.png not found. Falling back to img/vanilla/${material.toLowerCase()}.png`)
+                        this.onerror = null;
+                        this.src = `img/vanilla/${material.toLowerCase()}.png`;
+                    };
+                } else if (GameState.texture == 'fursky') {
+                    img.src = `img/fursky/${id.toLowerCase()}.png`;
+                    
+                    img.onerror = function() {
+                        console.log(`img/fursky/${id.toLowerCase()}.png not found. Falling back to img/vanilla/${material.toLowerCase()}.png`)
+                        this.onerror = null;
+                        this.src = `img/vanilla/${material.toLowerCase()}.png`;
+                    };
+                } else {
+                    img.src = `img/vanilla/${material.toLowerCase()}.png`;
+                }
+
+            });
         });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('open');
+        }
     });
 }
 
@@ -254,6 +304,51 @@ function setupModal() {
     infoBtn.onclick = () => modal.style.visibility = "visible";
     closeBtn.onclick = () => modal.style.visibility = "hidden";
 }
+
+
+/* --------------- book ---------------*/
+
+const totalPages = 4; 
+
+let currentPage = 0;
+
+function updateBook() {
+    pages.forEach((page, index) => {
+        if (index === currentPage) {
+            page.classList.add("active");
+        } else {
+            page.classList.remove("active");
+        }
+    });
+    
+    pageCounter.innerText = `Page ${currentPage + 1} of ${totalPages}`;
+    
+    if (currentPage === 0) {
+        prevBtn.classList.add("hidden-btn");
+    } else {
+        prevBtn.classList.remove("hidden-btn");
+    }
+    
+    if (currentPage === pages.length - 1) {
+        nextBtn.classList.add("hidden-btn");
+    } else {
+        nextBtn.classList.remove("hidden-btn");
+    }
+}
+
+nextBtn.addEventListener("click", () => {
+    if (currentPage < pages.length - 1) {
+        currentPage++;
+        updateBook();
+    }
+});
+
+prevBtn.addEventListener("click", () => {
+    if (currentPage > 0) {
+        currentPage--;
+        updateBook();
+    }
+});
 
 /* ---------------- obfus effect ---------------- */
 

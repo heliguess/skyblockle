@@ -4,11 +4,11 @@
 
 Skyblockle is a Wordle-like daily game for Hypixel Skyblock weapons.<br>
 The goal of the game is to guess the Weapon of the Day based on the stats and matches found throughout the game.<br>
-For every guess, each cell will appear as <span class="green">green</span>, <span class="yellow">yellow</span>, or <span class="red">red</span> depending on if the specific value matches.<br>
+For every guess, each cell will appear as green, yellow, or red depending on if the specific value matches.<br>
 
 **Green** means the stat matches with the WOTD.<br>
 **Yellow** (only for ability) means the guessed weapon shares only one ability (if either the weapon guessed or the WOTD have 2 abilities).<br>
-**Red** means that the stat is wrong. For <img src="img/SkyBlock_icons_strength.png" height="14px"><span class="red">Damage</span> and <img src="img/SkyBlock_icons_strength.png" height="14px"><span class="red">Strength</span>, there will be arrows (↑/↓) indicating whether the guessed weapon's stat needs to be higher or lower to match the WOTD's corresponding stat.
+**Red** means that the stat is wrong. For <img src="img/SkyBlock_icons_strength.png" height="14px">Damage and <img src="img/SkyBlock_icons_strength.png" height="14px">Strength, there will be arrows (↑/↓) indicating whether the guessed weapon's stat needs to be higher or lower to match the WOTD's corresponding stat.
 
 ## Clarifications
 
@@ -24,7 +24,8 @@ If you've guessed one of them, you won't be able to guess the other one. Any oth
 
 ## Credits
 
-Weapon sprites from <a href="https://hypixel.net/threads/0-23-4-hypixel-for-1-8-1-21-8.4174260/" target="_blank">Hypixel+</a><br>
-Minecraft and Monocraft fonts by <a href="https://github.com/IdreesInc" target="_blank">IdreesInc</a><br>
+<a href="https://hypixel.net/threads/0-23-4-hypixel-for-1-8-1-21-8.4174260/" target="_blank">Hypixel+ texture pack</a> ←
+<a href="https://modrinth.com/resourcepack/furfsky-reborn" target="_blank">FurSky Reborn texture pack</a> ←
+Minecraft font: <a href="https://minecraft.wiki/w/Mojangles">Minecraft Seven v2</a>
+Monocraft font (used for symbols) by <a href="https://github.com/IdreesInc" target="_blank">IdreesInc</a>
 Inspired by <a href="https://www.terradle.com" target="_blank">Terradle</a><br>
-

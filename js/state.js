@@ -6,7 +6,7 @@ export const GameState = {
     guessedItems: [],
     shareRows: [],
     practiceActive: false,
-    hplus: false,
+    texture: "vanilla",
     gaveUp: false,
     gameOver: false,
     practiceGameOver: false

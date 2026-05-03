@@ -36,7 +36,7 @@ export function addGrid(itemData, isRestore = false) {
                 cell.innerHTML += " <span class='arrow'>↑</span>"
                 cell.classList.add("higher");
             } else if(element > GameState.ansData[index]){
-                cell.innerHTML += " <span class='arrow'>↓</span>"
+                cell.innerHTML += " <span class='arrow'> ↓</span>"
                 cell.classList.add("lower");
             }
         }else if (element === itemData[0]){
@@ -45,13 +45,32 @@ export function addGrid(itemData, isRestore = false) {
             if (pair) {
                 parsedName = pair;
             }
+            
             if(element == "Aspect of the Jerry, Signature Edition"){
                 parsedName = "AOTJ, Signature Edition"
             } else if (element == "§4Sin§5seeker Scythe"){
                 parsedName = "Sinseeker Scythe"
             }
-            const imgSrc = GameState.hplus ? `img/${itemData[1].toLowerCase()}.png` : `img/vanilla/${itemData[7].toLowerCase()}.png`;
-            cell.innerHTML = `<div class="imgCell"><img src='${imgSrc}' alt='${parsedName}' data-id='${itemData[1]}' data-material='${itemData[7]}' title='${parsedName}' height='55px'><div>${parsedName}</div></div>`;
+
+            let imgSrc;
+            let fallbackSrc = `img/vanilla/${itemData[7].toLowerCase()}.png`;
+            if(GameState.texture == 'hplus') {
+                imgSrc = `img/hplus/${itemData[1].toLowerCase()}.png`
+            } else if (GameState.texture == 'fursky') {
+                imgSrc = `img/fursky/${itemData[1].toLowerCase()}.png`
+            } else {
+                imgSrc = fallbackSrc;
+            }
+        
+            cell.innerHTML = `<div class="imgCell"><img alt='${parsedName}' data-id='${itemData[1]}' data-material='${itemData[7]}' title='${parsedName}' height='55px'><div>${parsedName}</div></div>`;
+            
+            const img = cell.querySelector('img');
+            img.src = imgSrc;
+            img.onerror = function() {
+                console.log(`${imgSrc} not found. Falling back to ${fallbackSrc}`)
+                this.onerror = null;
+                this.src = fallbackSrc;
+            };
         }else{
             cell.innerHTML = element
         }
