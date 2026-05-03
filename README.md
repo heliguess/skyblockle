@@ -24,8 +24,8 @@ If you've guessed one of them, you won't be able to guess the other one. Any oth
 
 ## Credits
 
-<a href="https://hypixel.net/threads/0-23-4-hypixel-for-1-8-1-21-8.4174260/" target="_blank">Hypixel+ texture pack</a> ←
-<a href="https://modrinth.com/resourcepack/furfsky-reborn" target="_blank">FurSky Reborn texture pack</a> ←
-Minecraft font: <a href="https://minecraft.wiki/w/Mojangles">Minecraft Seven v2</a>
-Monocraft font (used for symbols) by <a href="https://github.com/IdreesInc" target="_blank">IdreesInc</a>
+<a href="https://hypixel.net/threads/0-23-4-hypixel-for-1-8-1-21-8.4174260/" target="_blank">Hypixel+ texture pack</a> ← <br>
+<a href="https://modrinth.com/resourcepack/furfsky-reborn" target="_blank">FurSky Reborn texture pack</a> ← <br>
+Minecraft font: <a href="https://minecraft.wiki/w/Mojangles">Minecraft Seven v2</a> <br>
+Monocraft font (used for symbols) by <a href="https://github.com/IdreesInc" target="_blank">IdreesInc</a> <br>
 Inspired by <a href="https://www.terradle.com" target="_blank">Terradle</a><br>
