@@ -13,7 +13,7 @@ For every guess, each cell will appear as green, yellow, or red depending on if 
 ## Clarifications
 
 * The only Categories included are **Sword**, **Bow**, **Longsword** and **Gauntlet**. <br>
-* Weapons with the "Wand" category (or "offensive wands") are **not** included, since this category is mostly for support items. Skyblock is very inconsistent, so only wands in the "Sword" category are included.<br>(To see a list of weapons this excludes, check <a href="https://wiki.hypixel.net/Wands#All_Wands" target="_blank">here.</a>)<br>
+* Weapons with the "Wand" category (or "offensive wands") are **not** included, since this category is mostly for support items. Skyblock is very inconsistent, so only wands in the "Sword" category are included.<br>(To see a list of weapons this excludes, check <a href="https://hypixelskyblock.minecraft.wiki/w/Wands#List_of_Wands" target="_blank">here.</a>)<br>
 * Items who have damage stats but aren't considered weapons (Fishing rods, Pickaxes, Axes...) are **not** included.<br>
 * Weapons that drop directly from **dungeon clear** enemies, **Daedalus Blade**, and **Great Spook Sword** are **not** included, since they have 0 stats by default.<br>
 * Skyblock versions of Vanilla weapons are **not** included.<br>
