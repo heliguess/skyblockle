@@ -77,11 +77,11 @@ export function showShareButton(attempts) {
         const day = getDayNumber();
         let text = "";
         if (GameState.gaveUp) {
-            text = `Skyblockle #${day}! Gave up after ${attempts} tries... \n${GameState.shareRows.join("\n")}\n<https://skyblockle.vercel.app/>`;
+            text = `Skyblockle #${day}! Gave up after ${attempts} tries... \n${GameState.shareRows.join("\n")}\n<https://skyblock.cat/>`;
         } else if (attempts <= 1) {
-            text = `Skyblockle #${day} first try!\n${GameState.shareRows.join("\n")}\n<https://skyblockle.vercel.app/>`;
+            text = `Skyblockle #${day} first try!\n${GameState.shareRows.join("\n")}\n<https://skyblock.cat/>`;
         } else {
-            text = `Skyblockle #${day} in ${attempts} tries\n${GameState.shareRows.join("\n")}\n<https://skyblockle.vercel.app/>`;
+            text = `Skyblockle #${day} in ${attempts} tries\n${GameState.shareRows.join("\n")}\n<https://skyblock.cat/>`;
         }
 
         navigator.clipboard.writeText(text)
