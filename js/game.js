@@ -3,6 +3,68 @@ import { pairOf, getTodayString } from "./utils.js";
 import { addGrid, buildShareRow } from "./grid.js";
 import { tempMessage, setAlert, clearAlert, showShareButton, enableInput, updateGiveUpVisibility} from "./ui.js";
 
+const guessInput = document.getElementById("guessInput");
+const guessBtn = document.getElementById("guessBtn");
+
+function clearGuessRows() {
+    const cells = document.querySelectorAll("#grid .cell:not(.title)");
+    cells.forEach(cell => cell.remove());
+}
+
+function restoreDailyRows() {
+    const savedGuesses = JSON.parse(localStorage.getItem("skyblockdle_guesses") || "[]");
+    GameState.shareRows = JSON.parse(localStorage.getItem("skyblockdle_shareRows") || "[]");
+    GameState.gaveUp = localStorage.getItem("skyblockdle_gaveUp") === "true";
+    GameState.guessedItems = [];
+
+    savedGuesses.forEach(name => {
+        const foundItem = GameState.items.find(e => e.name === name);
+        if (!foundItem) return;
+
+        GameState.guessedItems.push(foundItem);
+        addGrid([
+            foundItem.name,
+            foundItem.id,
+            foundItem.damage,
+            foundItem.strength,
+            foundItem.rarity,
+            foundItem.weapon_type,
+            foundItem.ability,
+            foundItem.material
+        ], true);
+    });
+
+    if (GameState.gaveUp && GameState.ansData) {
+        addGrid(GameState.ansData, true);
+    }
+}
+
+function returnToMainMenu() {
+    GameState.practiceActive = false;
+    GameState.practiceGameOver = false;
+
+    if (GameState.dailyItemAns && GameState.dailyAnsData) {
+        GameState.itemAns = GameState.dailyItemAns;
+        GameState.ansData = GameState.dailyAnsData;
+    }
+
+    clearGuessRows();
+    restoreDailyRows();
+
+    const backBtn = document.getElementById("practiceBackBtn");
+    if (backBtn) backBtn.style.display = "none";
+
+    lockDailyGame();
+
+    const playedToday = localStorage.getItem("skyblockdle_last_played") === getTodayString();
+    if (playedToday) {
+        const savedGuesses = JSON.parse(localStorage.getItem("skyblockdle_guesses") || "[]");
+        showShareButton(savedGuesses.length);
+    }
+
+    updateGiveUpVisibility();
+}
+
 (function applyDailyLockout() {
         
     const today = getTodayString();
@@ -103,6 +165,11 @@ function lockDailyGame() {
 })();
 
 function loadPracticeGame(itemsGiven) {
+    if (!GameState.practiceActive) {
+        GameState.dailyItemAns = GameState.itemAns;
+        GameState.dailyAnsData = GameState.ansData;
+    }
+
     GameState.practiceActive = true;
     GameState.gaveUp = false;
     GameState.practiceGameOver = false;
@@ -125,13 +192,13 @@ function loadPracticeGame(itemsGiven) {
     GameState.guessedItems = [];
     GameState.shareRows = [];
     
-    const cells = grid.querySelectorAll(".cell:not(.title)");
-    cells.forEach(cell => cell.remove());
+    clearGuessRows();
     
     guessInput.disabled = false;
     guessBtn.disabled = false;
     document.getElementById("practiceBtn").style.display = "none";
     document.getElementById("shareBtn").style.display = "none";
+    document.getElementById("practiceBackBtn").style.display = "inline-block";
 }
 
 export function checkAnswer() {
@@ -275,4 +342,9 @@ document.getElementById("giveUpBtn").addEventListener("click", () => {
     if (confirm("Are you sure you want to give up?")) {
         giveUp();
     }
+});
+
+document.getElementById("practiceBackBtn").addEventListener("click", e => {
+    e.preventDefault();
+    returnToMainMenu();
 });
