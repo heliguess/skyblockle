@@ -1069,7 +1069,7 @@
       "rarity": "LEGENDARY",
       "damage": 120,
       "strength": 20,
-      "ability": [],
+      "ability": ["Passive"],
       "material": "GOLD_SWORD"
     },
     {
@@ -1199,7 +1199,7 @@
       "rarity": "LEGENDARY",
       "damage": 525,
       "strength": 0,
-      "ability": ["Passive"],
+      "ability": ["Passive", "Right click"],
       "material": "IRON_SWORD"
     },
     {
