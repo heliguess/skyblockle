@@ -1198,7 +1198,7 @@
       "weapon_type": "SWORD",
       "rarity": "LEGENDARY",
       "damage": 525,
-      "strength": 0,
+      "strength": 30,
       "ability": ["Passive", "Right click"],
       "material": "IRON_SWORD"
     },
