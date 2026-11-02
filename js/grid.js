@@ -58,6 +58,8 @@ export function addGrid(itemData, isRestore = false) {
                 imgSrc = `img/hplus/${itemData[1].toLowerCase()}.png`
             } else if (GameState.texture == 'fursky') {
                 imgSrc = `img/fursky/${itemData[1].toLowerCase()}.png`
+            } else if (GameState.texture == 'hypixel') {
+                imgSrc = `img/hypixel/${itemData[1].toLowerCase()}.png`
             } else {
                 imgSrc = fallbackSrc;
             }

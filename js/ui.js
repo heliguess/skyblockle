@@ -274,6 +274,14 @@ function setupToggle(){
                         this.onerror = null;
                         this.src = `img/vanilla/${material.toLowerCase()}.png`;
                     };
+                } else if (GameState.texture == 'hypixel') {
+                    img.src = `img/hypixel/${id.toLowerCase()}.png`;
+                    
+                    img.onerror = function() {
+                        console.log(`img/hypixel/${id.toLowerCase()}.png not found. Falling back to img/vanilla/${material.toLowerCase()}.png`)
+                        this.onerror = null;
+                        this.src = `img/vanilla/${material.toLowerCase()}.png`;
+                    };
                 } else {
                     img.src = `img/vanilla/${material.toLowerCase()}.png`;
                 }

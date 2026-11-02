@@ -1211,6 +1211,16 @@
       "strength": 0,
       "ability": ["Passive"],
       "material": "STICK"
+    },
+    {
+      "id": "POLTERGEIST_PITCHFORK",
+      "name": "Poltergeist Pitchfork",
+      "weapon_type": "SWORD",
+      "rarity": "EPIC",
+      "damage": 170,
+      "strength": 120,
+      "ability": ["Right click"],
+      "material": "WOOD_SWORD"
     }
   ]
 }
